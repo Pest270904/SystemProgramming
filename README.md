@@ -20,5 +20,6 @@
     ```bash
     $ as -o a.o [ProgramName].s ; ld -o a a.o ; ./a
     ```
+    for example: your file is code.s then paste this into your terminal: "as -o a.o code.s ; ld -o a a.o ; ./a"
 
 __**(!!!!) Feel free to take it as references but please don't copy 100% 💕**__
