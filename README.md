@@ -20,9 +20,9 @@
     ```bash
     $ as -o a.o [ProgramName].s ; ld -o a a.o ; ./a
     ```
-    for example your file is code.s then [ProgramName] is "code": 
+    for example your file named **code.s** then [ProgramName] is "code": 
     ```bash
-    $ as -o a.o code.s ; ld -o a a.o ; ./a"
+    $ as -o a.o code.s ; ld -o a a.o ; ./a  
     ```
 
 - __**(!!!!) Feel free to take it as references but please don't copy 100% 💕**__
