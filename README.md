@@ -15,4 +15,10 @@
 - Lab 5:
 - Lab 6:
 
-__**Feel free to take it as references but please don't copy 100% 💕**__
+## Notes:
+- To run any assembly file:
+    ``` 
+        as -o a.o [ProgramName].s ; ld -o a a.o ; ./a
+    ```
+
+__**(!!!!) Feel free to take it as references but please don't copy 100% 💕**__
