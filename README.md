@@ -18,7 +18,7 @@
 ## Notes:
 - To run any assembly file:
     ```bash
-        $ as -o a.o [ProgramName].s ; ld -o a a.o ; ./a
+    $ as -o a.o [ProgramName].s ; ld -o a a.o ; ./a
     ```
 
 __**(!!!!) Feel free to take it as references but please don't copy 100% 💕**__
