@@ -70,34 +70,32 @@ EXIT_LOOP:
     subl    (res), %eax    
     mov     %eax, (res)     # calculate age by minus 2024(now) with res(number after convert from input), then store in res
 
-    cmp     $0, %eax        # if (eax == 2024) gogo EQUAL_2024
+    cmp     $0, %eax        # if (eax == 2024) goto EQUAL_2024
     je      EQUAL_2024
 
 # ------------------------------------------------ Advanced Part ------------------------------------------------
     # Convert number to string
-    mov     $ageCalc, %esi
+    mov     $ageCalc, %esi  # load address cua ageCalc into esi
     mov     $0, %ebx        # set index for ageCalc (ebx)
     mov     $10, %ecx       # divisor = 10 (ecx)
     mov     (res), %eax
 CONVERT_LOOP:
-    cmp     $0, %eax
+    cmp     $0, %eax        # if(eax == 0) goto EXIT_C_LOOP
     je      EXIT_C_LOOP
-    # mov     (res), %eax
-    xor     %edx, %edx
-    div     %ecx
-    addl    $48, %edx
-    mov     %edx, (%esi, %ebx)
-    # mov     %eax, (res)
+    xor     %edx, %edx      # set edx = 0 (just for sure there will be no error when using div)
+    div     %ecx            # div eax by ecx, result store in eax and remainder store in edx
+    addl    $48, %edx       # convert edx to char
+    mov     %edx, (%esi, %ebx)      # ageCalc[esi + ebx] where esi is address of ageCalc and ebx is the offset {0,1,2,3}
 
-    incl    %ebx
-    jmp     CONVERT_LOOP
+    incl    %ebx            # increase offset by 1
+    jmp     CONVERT_LOOP    # jump back to the loop
 
 EQUAL_2024: 
-    movl    $'0', (ageCalc)
+    movl    $'0', (ageCalc)     # set ageCalc = '0' when res=2024 because it will break asap when go in CONVERT_LOOP and ageCalc will be null
 
 EXIT_C_LOOP:
     # Reverse string
-    mov     $ageCalc, %esi
+    mov     $ageCalc, %esi     # load address cua ageCalc into esi
 
     mov     0(%esi), %al       # al = ageCalc[0]
     mov     1(%esi), %bl       # bl = ageCalc[1]
@@ -140,10 +138,10 @@ ERROR:
     jmp     EXIT
 
 VALIDATE:
-    cmpl    $30, (res)
+    cmpl    $30, (res)      # if (res > 30) goto NOTVALID 
     jg      NOTVALID
 
-    cmpl    $16, (res)
+    cmpl    $16, (res)      # if (res < 16) goto NOTVALID 
     jl      NOTVALID
 
     movl    $4, %eax        # print "Can be in HCM Community Youth Union" 
