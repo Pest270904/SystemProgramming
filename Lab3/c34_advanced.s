@@ -18,9 +18,8 @@
 
 .section .bss
 	.lcomm input, 5
-    .lcomm res, 5
-    .lcomm ageCalc, 5
-    .lcomm check, 1
+	.lcomm res, 5
+	.lcomm ageCalc, 5
 .section .text
 	.globl _start
 
@@ -37,9 +36,10 @@ _start:
     movl    $5, %edx
     int     $0x80
 
+# ------------------------------------------------ Advanced Part ------------------------------------------------
+
     movl    $0, (res)       # set res = 0
     movl    $input, %eax   # move address of input into eax
-
     xor     %ebx, %ebx      # set ebx = 0
     mov     $0, %ecx        # set counter of loop (ecx) = 0
 
@@ -73,7 +73,6 @@ EXIT_LOOP:
     cmp     $0, %eax        # if (eax == 2024) goto EQUAL_2024
     je      EQUAL_2024
 
-# ------------------------------------------------ Advanced Part ------------------------------------------------
     # Convert number to string
     mov     $ageCalc, %esi  # load address cua ageCalc into esi
     mov     $0, %ebx        # set index for ageCalc (ebx)
