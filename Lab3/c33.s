@@ -6,8 +6,8 @@ minStr: .string "Min value: "
 minStr_len = . - minStr
 
 .section .bss
-	.lcomm input, 2
     .lcomm res, 2
+    .lcomm input, 2
 .section .text
 	.globl _start
 
@@ -29,13 +29,13 @@ LOOP:
     movl    $2, %edx
     int     $0x80
 
-    movl    (input), %eax   # store address of input in eax
-    subl    $48, %eax       # convert to number
+    mov    (input), %al   # store value of input in eax
+    sub    $48, %al       # convert to number
 
-    cmpl    $res, %eax      # if (eax >= res) jump NEXT
+    cmp    (res), %al      # if (eax >= res) jump NEXT
     jge     NEXT
 
-    mov     %eax, (res)     # if res < eax then change value of res to eax
+    mov     %al, (res)     # if res < eax then change value of res to eax
 NEXT:
     incl    %esi            # increase counter by 1
 

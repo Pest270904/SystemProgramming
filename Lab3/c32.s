@@ -1,59 +1,79 @@
 .section .data
+inputStr: .string "Enter a string: "
+len = . - inputStr
 
-output: 
-    .string "Enter a number (5 digits): "
-length = . - output
-
-successText:
-    .string "Doi xung"
-len1 = . - successText
-failText:
-    .string "Khong doi xung"
-len2 = . - failText
+endline: .string "\n"
+leng = . - endline
 .section .bss
-    .lcomm input,  10
+    .lcomm num1, 4
+.section .text
+    .globl _start
 
-    
-.section .text 
-
-.globl _start
 _start:
-    movl $length, %edx 
-    movl $output, %ecx 
-    movl $1, %ebx 
-    movl $4, %eax 
-    int $0x80
+    movl     $4, %eax          # print question
+    movl     $1, %ebx
+    movl     $inputStr, %ecx
+    movl     $len, %edx
+    int      $0x80
 
-    movl $3, %eax
-    movl $0, %ebx
-    movl $input, %ecx
-    movl $6, %edx
-    int $0x80
-
-    movl $input, %eax
-
-    mov 0(%eax), %bl
-    cmp $'A', %bl         
-    jl .not_capital       
-    cmp $'Z', %bl         
-    jg .not_capital       
-
-.not_capital:
-    cmp $'a', %bl          
-    jl .exit
-    cmp $'z', %bl          
-    jg .exit              
-
-
-    sub $32, %bl
-
-    movl $1, %edx 
-    mov %bl, %cl
-    movl $1, %ebx 
-    movl $4, %eax
-    int $0x80
-
-.exit:
-    movl $1, %eax 
-    int $0x80
+    movl     $3, %eax           # Read string
+    movl     $0, %ebx
+    movl     $num1, %ecx
+    movl     $5, %edx
+    int      $0x80
     
+   
+    movl $0, %esi              # define counter
+    jmp checkloop	
+loop:
+    mov      $num1, %eax
+    mov      (%eax,%esi), %bl
+    cmpl     $0, %esi
+    je       first             # jmp if this position is the first  
+    movl     $0x5a, %ecx
+    cmp      %cl, %bl
+    jl       upper
+    incl     %esi
+    jmp checkloop
+lower:                         # branch sub 32(from uppercase to lowercase)
+    sub $32, %bl         
+    lea (%eax,%esi), %edx  
+    movb %bl, (%edx) 
+    
+    incl     %esi	
+    jmp checkloop	 
+upper:                         # branch add 32(from lowercase to uppercase)
+    add      $32, %bl
+    lea (%eax,%esi), %edx
+    movb %bl, (%edx)
+
+    incl     %esi
+    jmp checkloop
+
+first:
+    movl $91, %ecx             # check whether first position > 91 in ascii
+    cmp %cl, %bl
+    jge  lower
+    incl %esi
+    
+checkloop:
+    movl $5, %eax               # check whether counter < 5
+    cmpl %esi, %eax
+    jg loop
+   
+    movl     $4, %eax           # Print result
+    movl     $1, %ebx
+    movl     $num1, %ecx
+    movl     $5, %edx
+    int      $0x80
+
+    movl     $4, %eax
+    movl     $1, %ebx
+    movl     $endline, %ecx
+    movl     $leng, %edx
+    int      $0x80
+
+
+    movl $1 , %eax
+    int $0x80
+

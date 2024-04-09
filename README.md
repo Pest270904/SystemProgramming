@@ -9,8 +9,8 @@
 
 ## **Progress**:
 - Lab 1: 10.5/10
-- Lab 2: 4/4
-- Lab 3:
+- Lab 2: 4/4 (0/1 advanced)
+- Lab 3: 4/4 (1/2 advanced)
 - Lab 4:
 - Lab 5:
 - Lab 6:
