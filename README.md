@@ -11,7 +11,7 @@
 - Lab 1: 10.5/10
 - Lab 2: 4/4 (0/1 advanced)
 - Lab 3: 4/4 (1/2 advanced)
-- Lab 4:
+- Lab 4: 3/3
 - Lab 5:
 - Lab 6:
 
@@ -24,5 +24,7 @@
     ```bash
     $ as -o a.o code.s ; ld -o a a.o ; ./a  
     ```
+
+- Tools used: IDA Pro 7.7,...
 
 - __**(!!!!) Feel free to take it as references but please don't copy 100% 💕**__
