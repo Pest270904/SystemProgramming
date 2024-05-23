@@ -5,14 +5,12 @@
 -   Đặng Chí Thịnh - 22521399
 -   Trần Hoàng Tuấn Kiệt - 22520724
 
-**About the lab**: https://drive.google.com/drive/folders/1Wl-0hFruouCziGHsB56CXG9b6U3KECxu?usp=drive_link
-
 ## **Progress**:
 - Lab 1: 10.5/10
 - Lab 2: 4/4 (0/1 advanced)
 - Lab 3: 4/4 (1/2 advanced)
 - Lab 4: 3/3
-- Lab 5:
+- Lab 5: 5/5
 - Lab 6:
 
 ## Notes:
